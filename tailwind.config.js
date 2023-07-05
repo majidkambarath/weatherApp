@@ -5,6 +5,11 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    fontFamily:{
+      'title':['Bacasime Antique'],
+      'sub':['Abel'],
+      'time' : ['Gruppo'],
+    },
     extend: {},
   },
   plugins: [],
