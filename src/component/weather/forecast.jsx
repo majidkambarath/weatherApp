@@ -9,7 +9,7 @@ export default function forecast({title ,items}) {
         <div className='flex items-center justify-start '>
         <p className='text-white font-medium ml-5  text-sm uppercase'>{title}</p>
         </div>
-       <hr className='my-2 w-[750px] ml-6 ' />
+       <hr className='my-2 md:w-[750px] ml-6 ' />
        <div className='flex flex-row items-center justify-evenly text-white '>
         {
           items.map((item)=>{

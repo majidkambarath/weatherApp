@@ -5,7 +5,7 @@ import Weather from "../weather/weatherShow";
 import Forecast from "../weather/forecast";
 import LeftSide from "../weather/leftSide";
 import Search from "../search/search";
-import Selection from '../search/selection'
+import Selection from "../search/selection";
 import getFormattedWeatherData from "../../service/fetchApi";
 export default function HomeUI() {
   const [query, setQuery] = useState({ q: "berlin" });
@@ -19,9 +19,9 @@ export default function HomeUI() {
     };
     fetchWeather();
   }, [query, units]);
-  let humidity = weatherData?.humidity
-let temp = weatherData?.temp
-let speed = weatherData?.speed
+  let humidity = weatherData?.humidity;
+  let temp = weatherData?.temp;
+  let speed = weatherData?.speed;
   return (
     <>
       <div
@@ -30,9 +30,25 @@ let speed = weatherData?.speed
           backgroundImage: `url(${weather})`,
         }}
       >
-        <div className="h-[500px] w-[1200px] bg-slate-100 flex">
+        <div className="md:h-[500px] w-full md:w-[1200px] bg-slate-100 md:flex flex-row-reverse ">
+          <div>
+            {/* <LeftSide data={weatherData} setQuery={query}   /> */}
+            <div className="bg-black/70 h-full w-[400px] ">
+              <div>
+                <Search setQuery={setQuery} units={units} setUnits={setUnits} />
+              </div>
+              <div>
+                <Selection
+                  humidity={humidity}
+                  temp={temp}
+                  speed={speed}
+                  setQuery={setQuery}
+                />
+              </div>
+            </div>
+          </div>
           <div
-            className="bg-slate-500 h-full w-[800px] bg-no-repeat bg-fixed bg-cover  "
+            className="bg-slate-500 h-full md:w-[800px] bg-no-repeat bg-fixed bg-cover  "
             style={{ backgroundImage: `url(${bgWeather})` }}
           >
             <span className="font-title text-lg font-semibold px-2">
@@ -44,25 +60,19 @@ let speed = weatherData?.speed
                   <Weather data={weatherData} />
                 </div>
                 <div>
-                  <Forecast title="hourly forecast" items={weatherData.hourly} />
+                  <Forecast
+                    title="hourly forecast"
+                    items={weatherData.hourly}
+                  />
                   <div className="mt-4">
-                    <Forecast title="Daily forecast" items={weatherData.daily} />
+                    <Forecast
+                      title="Daily forecast"
+                      items={weatherData.daily}
+                    />
                   </div>
                 </div>
               </>
             )}
-          </div>
-          <div>
-            {/* <LeftSide data={weatherData} setQuery={query}   /> */}
-            <div className='bg-black/70 h-full w-[400px] '> 
-            <div>
-              <Search setQuery={setQuery} units={units} setUnits={setUnits} />
-            </div>
-      <div>
-        <Selection humidity={humidity} temp={temp} speed={speed} setQuery={setQuery} />
-      </div>
-      
-    </div>
           </div>
         </div>
       </div>
